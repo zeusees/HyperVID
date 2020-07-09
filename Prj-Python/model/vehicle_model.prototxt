@@ -1,0 +1,1254 @@
+name: "mxnet-mdoel"
+
+layer {
+  name: "data"
+  type: "Input"
+  top: "data"
+  input_param {
+    shape: { dim: 1 dim: 3 dim: 224 dim: 224 }
+  }
+}
+
+layer {
+  bottom: "data"
+  top: "mobilenet0_conv0_fwd"
+  name: "mobilenet0_conv0_fwd"
+  type: "Convolution"
+  convolution_param {
+    num_output: 32
+    kernel_size: 3
+    pad: 1
+    group: 1
+    stride: 2
+    dilation: 1
+    bias_term: false
+  }
+  param {
+    name: "data"
+  }
+}
+
+layer {
+  bottom: "mobilenet0_conv0_fwd"
+  top: "mobilenet0_batchnorm0_fwd"
+  name: "mobilenet0_batchnorm0_fwd"
+  type: "BatchNorm"
+  batch_norm_param {
+    use_global_stats: true
+    moving_average_fraction: 0.9
+    eps: 1e-05
+  }
+}
+layer {
+  bottom: "mobilenet0_batchnorm0_fwd"
+  top: "mobilenet0_batchnorm0_fwd"
+  name: "mobilenet0_batchnorm0_fwd_scale"
+  type: "Scale"
+  scale_param { bias_term: true }
+}
+
+layer {
+  bottom: "mobilenet0_batchnorm0_fwd"
+  top: "mobilenet0_relu0_fwd"
+  name: "mobilenet0_relu0_fwd"
+  type: "ReLU"
+}
+
+layer {
+  bottom: "mobilenet0_relu0_fwd"
+  top: "mobilenet0_conv1_fwd"
+  name: "mobilenet0_conv1_fwd"
+  type: "Convolution"
+  convolution_param {
+    num_output: 32
+    kernel_size: 3
+    pad: 1
+    group: 32
+    stride: 1
+    dilation: 1
+    bias_term: false
+  }
+  param {
+    name: "mobilenet0_conv1_weight"
+  }
+}
+
+layer {
+  bottom: "mobilenet0_conv1_fwd"
+  top: "mobilenet0_batchnorm1_fwd"
+  name: "mobilenet0_batchnorm1_fwd"
+  type: "BatchNorm"
+  batch_norm_param {
+    use_global_stats: true
+    moving_average_fraction: 0.9
+    eps: 1e-05
+  }
+}
+layer {
+  bottom: "mobilenet0_batchnorm1_fwd"
+  top: "mobilenet0_batchnorm1_fwd"
+  name: "mobilenet0_batchnorm1_fwd_scale"
+  type: "Scale"
+  scale_param { bias_term: true }
+}
+
+layer {
+  bottom: "mobilenet0_batchnorm1_fwd"
+  top: "mobilenet0_relu1_fwd"
+  name: "mobilenet0_relu1_fwd"
+  type: "ReLU"
+}
+
+layer {
+  bottom: "mobilenet0_relu1_fwd"
+  top: "mobilenet0_conv2_fwd"
+  name: "mobilenet0_conv2_fwd"
+  type: "Convolution"
+  convolution_param {
+    num_output: 64
+    kernel_size: 1
+    pad: 0
+    group: 1
+    stride: 1
+    dilation: 1
+    bias_term: false
+  }
+  param {
+    name: "mobilenet0_conv2_weight"
+  }
+}
+
+layer {
+  bottom: "mobilenet0_conv2_fwd"
+  top: "mobilenet0_batchnorm2_fwd"
+  name: "mobilenet0_batchnorm2_fwd"
+  type: "BatchNorm"
+  batch_norm_param {
+    use_global_stats: true
+    moving_average_fraction: 0.9
+    eps: 1e-05
+  }
+}
+layer {
+  bottom: "mobilenet0_batchnorm2_fwd"
+  top: "mobilenet0_batchnorm2_fwd"
+  name: "mobilenet0_batchnorm2_fwd_scale"
+  type: "Scale"
+  scale_param { bias_term: true }
+}
+
+layer {
+  bottom: "mobilenet0_batchnorm2_fwd"
+  top: "mobilenet0_relu2_fwd"
+  name: "mobilenet0_relu2_fwd"
+  type: "ReLU"
+}
+
+layer {
+  bottom: "mobilenet0_relu2_fwd"
+  top: "mobilenet0_conv3_fwd"
+  name: "mobilenet0_conv3_fwd"
+  type: "Convolution"
+  convolution_param {
+    num_output: 64
+    kernel_size: 3
+    pad: 1
+    group: 64
+    stride: 2
+    dilation: 1
+    bias_term: false
+  }
+  param {
+    name: "mobilenet0_conv3_weight"
+  }
+}
+
+layer {
+  bottom: "mobilenet0_conv3_fwd"
+  top: "mobilenet0_batchnorm3_fwd"
+  name: "mobilenet0_batchnorm3_fwd"
+  type: "BatchNorm"
+  batch_norm_param {
+    use_global_stats: true
+    moving_average_fraction: 0.9
+    eps: 1e-05
+  }
+}
+layer {
+  bottom: "mobilenet0_batchnorm3_fwd"
+  top: "mobilenet0_batchnorm3_fwd"
+  name: "mobilenet0_batchnorm3_fwd_scale"
+  type: "Scale"
+  scale_param { bias_term: true }
+}
+
+layer {
+  bottom: "mobilenet0_batchnorm3_fwd"
+  top: "mobilenet0_relu3_fwd"
+  name: "mobilenet0_relu3_fwd"
+  type: "ReLU"
+}
+
+layer {
+  bottom: "mobilenet0_relu3_fwd"
+  top: "mobilenet0_conv4_fwd"
+  name: "mobilenet0_conv4_fwd"
+  type: "Convolution"
+  convolution_param {
+    num_output: 128
+    kernel_size: 1
+    pad: 0
+    group: 1
+    stride: 1
+    dilation: 1
+    bias_term: false
+  }
+  param {
+    name: "mobilenet0_conv4_weight"
+  }
+}
+
+layer {
+  bottom: "mobilenet0_conv4_fwd"
+  top: "mobilenet0_batchnorm4_fwd"
+  name: "mobilenet0_batchnorm4_fwd"
+  type: "BatchNorm"
+  batch_norm_param {
+    use_global_stats: true
+    moving_average_fraction: 0.9
+    eps: 1e-05
+  }
+}
+layer {
+  bottom: "mobilenet0_batchnorm4_fwd"
+  top: "mobilenet0_batchnorm4_fwd"
+  name: "mobilenet0_batchnorm4_fwd_scale"
+  type: "Scale"
+  scale_param { bias_term: true }
+}
+
+layer {
+  bottom: "mobilenet0_batchnorm4_fwd"
+  top: "mobilenet0_relu4_fwd"
+  name: "mobilenet0_relu4_fwd"
+  type: "ReLU"
+}
+
+layer {
+  bottom: "mobilenet0_relu4_fwd"
+  top: "mobilenet0_conv5_fwd"
+  name: "mobilenet0_conv5_fwd"
+  type: "Convolution"
+  convolution_param {
+    num_output: 128
+    kernel_size: 3
+    pad: 1
+    group: 128
+    stride: 1
+    dilation: 1
+    bias_term: false
+  }
+  param {
+    name: "mobilenet0_conv5_weight"
+  }
+}
+
+layer {
+  bottom: "mobilenet0_conv5_fwd"
+  top: "mobilenet0_batchnorm5_fwd"
+  name: "mobilenet0_batchnorm5_fwd"
+  type: "BatchNorm"
+  batch_norm_param {
+    use_global_stats: true
+    moving_average_fraction: 0.9
+    eps: 1e-05
+  }
+}
+layer {
+  bottom: "mobilenet0_batchnorm5_fwd"
+  top: "mobilenet0_batchnorm5_fwd"
+  name: "mobilenet0_batchnorm5_fwd_scale"
+  type: "Scale"
+  scale_param { bias_term: true }
+}
+
+layer {
+  bottom: "mobilenet0_batchnorm5_fwd"
+  top: "mobilenet0_relu5_fwd"
+  name: "mobilenet0_relu5_fwd"
+  type: "ReLU"
+}
+
+layer {
+  bottom: "mobilenet0_relu5_fwd"
+  top: "mobilenet0_conv6_fwd"
+  name: "mobilenet0_conv6_fwd"
+  type: "Convolution"
+  convolution_param {
+    num_output: 128
+    kernel_size: 1
+    pad: 0
+    group: 1
+    stride: 1
+    dilation: 1
+    bias_term: false
+  }
+  param {
+    name: "mobilenet0_conv6_weight"
+  }
+}
+
+layer {
+  bottom: "mobilenet0_conv6_fwd"
+  top: "mobilenet0_batchnorm6_fwd"
+  name: "mobilenet0_batchnorm6_fwd"
+  type: "BatchNorm"
+  batch_norm_param {
+    use_global_stats: true
+    moving_average_fraction: 0.9
+    eps: 1e-05
+  }
+}
+layer {
+  bottom: "mobilenet0_batchnorm6_fwd"
+  top: "mobilenet0_batchnorm6_fwd"
+  name: "mobilenet0_batchnorm6_fwd_scale"
+  type: "Scale"
+  scale_param { bias_term: true }
+}
+
+layer {
+  bottom: "mobilenet0_batchnorm6_fwd"
+  top: "mobilenet0_relu6_fwd"
+  name: "mobilenet0_relu6_fwd"
+  type: "ReLU"
+}
+
+layer {
+  bottom: "mobilenet0_relu6_fwd"
+  top: "mobilenet0_conv7_fwd"
+  name: "mobilenet0_conv7_fwd"
+  type: "Convolution"
+  convolution_param {
+    num_output: 128
+    kernel_size: 3
+    pad: 1
+    group: 128
+    stride: 2
+    dilation: 1
+    bias_term: false
+  }
+  param {
+    name: "mobilenet0_conv7_weight"
+  }
+}
+
+layer {
+  bottom: "mobilenet0_conv7_fwd"
+  top: "mobilenet0_batchnorm7_fwd"
+  name: "mobilenet0_batchnorm7_fwd"
+  type: "BatchNorm"
+  batch_norm_param {
+    use_global_stats: true
+    moving_average_fraction: 0.9
+    eps: 1e-05
+  }
+}
+layer {
+  bottom: "mobilenet0_batchnorm7_fwd"
+  top: "mobilenet0_batchnorm7_fwd"
+  name: "mobilenet0_batchnorm7_fwd_scale"
+  type: "Scale"
+  scale_param { bias_term: true }
+}
+
+layer {
+  bottom: "mobilenet0_batchnorm7_fwd"
+  top: "mobilenet0_relu7_fwd"
+  name: "mobilenet0_relu7_fwd"
+  type: "ReLU"
+}
+
+layer {
+  bottom: "mobilenet0_relu7_fwd"
+  top: "mobilenet0_conv8_fwd"
+  name: "mobilenet0_conv8_fwd"
+  type: "Convolution"
+  convolution_param {
+    num_output: 256
+    kernel_size: 1
+    pad: 0
+    group: 1
+    stride: 1
+    dilation: 1
+    bias_term: false
+  }
+  param {
+    name: "mobilenet0_conv8_weight"
+  }
+}
+
+layer {
+  bottom: "mobilenet0_conv8_fwd"
+  top: "mobilenet0_batchnorm8_fwd"
+  name: "mobilenet0_batchnorm8_fwd"
+  type: "BatchNorm"
+  batch_norm_param {
+    use_global_stats: true
+    moving_average_fraction: 0.9
+    eps: 1e-05
+  }
+}
+layer {
+  bottom: "mobilenet0_batchnorm8_fwd"
+  top: "mobilenet0_batchnorm8_fwd"
+  name: "mobilenet0_batchnorm8_fwd_scale"
+  type: "Scale"
+  scale_param { bias_term: true }
+}
+
+layer {
+  bottom: "mobilenet0_batchnorm8_fwd"
+  top: "mobilenet0_relu8_fwd"
+  name: "mobilenet0_relu8_fwd"
+  type: "ReLU"
+}
+
+layer {
+  bottom: "mobilenet0_relu8_fwd"
+  top: "mobilenet0_conv9_fwd"
+  name: "mobilenet0_conv9_fwd"
+  type: "Convolution"
+  convolution_param {
+    num_output: 256
+    kernel_size: 3
+    pad: 1
+    group: 256
+    stride: 1
+    dilation: 1
+    bias_term: false
+  }
+  param {
+    name: "mobilenet0_conv9_weight"
+  }
+}
+
+layer {
+  bottom: "mobilenet0_conv9_fwd"
+  top: "mobilenet0_batchnorm9_fwd"
+  name: "mobilenet0_batchnorm9_fwd"
+  type: "BatchNorm"
+  batch_norm_param {
+    use_global_stats: true
+    moving_average_fraction: 0.9
+    eps: 1e-05
+  }
+}
+layer {
+  bottom: "mobilenet0_batchnorm9_fwd"
+  top: "mobilenet0_batchnorm9_fwd"
+  name: "mobilenet0_batchnorm9_fwd_scale"
+  type: "Scale"
+  scale_param { bias_term: true }
+}
+
+layer {
+  bottom: "mobilenet0_batchnorm9_fwd"
+  top: "mobilenet0_relu9_fwd"
+  name: "mobilenet0_relu9_fwd"
+  type: "ReLU"
+}
+
+layer {
+  bottom: "mobilenet0_relu9_fwd"
+  top: "mobilenet0_conv10_fwd"
+  name: "mobilenet0_conv10_fwd"
+  type: "Convolution"
+  convolution_param {
+    num_output: 256
+    kernel_size: 1
+    pad: 0
+    group: 1
+    stride: 1
+    dilation: 1
+    bias_term: false
+  }
+  param {
+    name: "mobilenet0_conv10_weight"
+  }
+}
+
+layer {
+  bottom: "mobilenet0_conv10_fwd"
+  top: "mobilenet0_batchnorm10_fwd"
+  name: "mobilenet0_batchnorm10_fwd"
+  type: "BatchNorm"
+  batch_norm_param {
+    use_global_stats: true
+    moving_average_fraction: 0.9
+    eps: 1e-05
+  }
+}
+layer {
+  bottom: "mobilenet0_batchnorm10_fwd"
+  top: "mobilenet0_batchnorm10_fwd"
+  name: "mobilenet0_batchnorm10_fwd_scale"
+  type: "Scale"
+  scale_param { bias_term: true }
+}
+
+layer {
+  bottom: "mobilenet0_batchnorm10_fwd"
+  top: "mobilenet0_relu10_fwd"
+  name: "mobilenet0_relu10_fwd"
+  type: "ReLU"
+}
+
+layer {
+  bottom: "mobilenet0_relu10_fwd"
+  top: "mobilenet0_conv11_fwd"
+  name: "mobilenet0_conv11_fwd"
+  type: "Convolution"
+  convolution_param {
+    num_output: 256
+    kernel_size: 3
+    pad: 1
+    group: 256
+    stride: 2
+    dilation: 1
+    bias_term: false
+  }
+  param {
+    name: "mobilenet0_conv11_weight"
+  }
+}
+
+layer {
+  bottom: "mobilenet0_conv11_fwd"
+  top: "mobilenet0_batchnorm11_fwd"
+  name: "mobilenet0_batchnorm11_fwd"
+  type: "BatchNorm"
+  batch_norm_param {
+    use_global_stats: true
+    moving_average_fraction: 0.9
+    eps: 1e-05
+  }
+}
+layer {
+  bottom: "mobilenet0_batchnorm11_fwd"
+  top: "mobilenet0_batchnorm11_fwd"
+  name: "mobilenet0_batchnorm11_fwd_scale"
+  type: "Scale"
+  scale_param { bias_term: true }
+}
+
+layer {
+  bottom: "mobilenet0_batchnorm11_fwd"
+  top: "mobilenet0_relu11_fwd"
+  name: "mobilenet0_relu11_fwd"
+  type: "ReLU"
+}
+
+layer {
+  bottom: "mobilenet0_relu11_fwd"
+  top: "mobilenet0_conv12_fwd"
+  name: "mobilenet0_conv12_fwd"
+  type: "Convolution"
+  convolution_param {
+    num_output: 512
+    kernel_size: 1
+    pad: 0
+    group: 1
+    stride: 1
+    dilation: 1
+    bias_term: false
+  }
+  param {
+    name: "mobilenet0_conv12_weight"
+  }
+}
+
+layer {
+  bottom: "mobilenet0_conv12_fwd"
+  top: "mobilenet0_batchnorm12_fwd"
+  name: "mobilenet0_batchnorm12_fwd"
+  type: "BatchNorm"
+  batch_norm_param {
+    use_global_stats: true
+    moving_average_fraction: 0.9
+    eps: 1e-05
+  }
+}
+layer {
+  bottom: "mobilenet0_batchnorm12_fwd"
+  top: "mobilenet0_batchnorm12_fwd"
+  name: "mobilenet0_batchnorm12_fwd_scale"
+  type: "Scale"
+  scale_param { bias_term: true }
+}
+
+layer {
+  bottom: "mobilenet0_batchnorm12_fwd"
+  top: "mobilenet0_relu12_fwd"
+  name: "mobilenet0_relu12_fwd"
+  type: "ReLU"
+}
+
+layer {
+  bottom: "mobilenet0_relu12_fwd"
+  top: "mobilenet0_conv13_fwd"
+  name: "mobilenet0_conv13_fwd"
+  type: "Convolution"
+  convolution_param {
+    num_output: 512
+    kernel_size: 3
+    pad: 1
+    group: 512
+    stride: 1
+    dilation: 1
+    bias_term: false
+  }
+  param {
+    name: "mobilenet0_conv13_weight"
+  }
+}
+
+layer {
+  bottom: "mobilenet0_conv13_fwd"
+  top: "mobilenet0_batchnorm13_fwd"
+  name: "mobilenet0_batchnorm13_fwd"
+  type: "BatchNorm"
+  batch_norm_param {
+    use_global_stats: true
+    moving_average_fraction: 0.9
+    eps: 1e-05
+  }
+}
+layer {
+  bottom: "mobilenet0_batchnorm13_fwd"
+  top: "mobilenet0_batchnorm13_fwd"
+  name: "mobilenet0_batchnorm13_fwd_scale"
+  type: "Scale"
+  scale_param { bias_term: true }
+}
+
+layer {
+  bottom: "mobilenet0_batchnorm13_fwd"
+  top: "mobilenet0_relu13_fwd"
+  name: "mobilenet0_relu13_fwd"
+  type: "ReLU"
+}
+
+layer {
+  bottom: "mobilenet0_relu13_fwd"
+  top: "mobilenet0_conv14_fwd"
+  name: "mobilenet0_conv14_fwd"
+  type: "Convolution"
+  convolution_param {
+    num_output: 512
+    kernel_size: 1
+    pad: 0
+    group: 1
+    stride: 1
+    dilation: 1
+    bias_term: false
+  }
+  param {
+    name: "mobilenet0_conv14_weight"
+  }
+}
+
+layer {
+  bottom: "mobilenet0_conv14_fwd"
+  top: "mobilenet0_batchnorm14_fwd"
+  name: "mobilenet0_batchnorm14_fwd"
+  type: "BatchNorm"
+  batch_norm_param {
+    use_global_stats: true
+    moving_average_fraction: 0.9
+    eps: 1e-05
+  }
+}
+layer {
+  bottom: "mobilenet0_batchnorm14_fwd"
+  top: "mobilenet0_batchnorm14_fwd"
+  name: "mobilenet0_batchnorm14_fwd_scale"
+  type: "Scale"
+  scale_param { bias_term: true }
+}
+
+layer {
+  bottom: "mobilenet0_batchnorm14_fwd"
+  top: "mobilenet0_relu14_fwd"
+  name: "mobilenet0_relu14_fwd"
+  type: "ReLU"
+}
+
+layer {
+  bottom: "mobilenet0_relu14_fwd"
+  top: "mobilenet0_conv15_fwd"
+  name: "mobilenet0_conv15_fwd"
+  type: "Convolution"
+  convolution_param {
+    num_output: 512
+    kernel_size: 3
+    pad: 1
+    group: 512
+    stride: 1
+    dilation: 1
+    bias_term: false
+  }
+  param {
+    name: "mobilenet0_conv15_weight"
+  }
+}
+
+layer {
+  bottom: "mobilenet0_conv15_fwd"
+  top: "mobilenet0_batchnorm15_fwd"
+  name: "mobilenet0_batchnorm15_fwd"
+  type: "BatchNorm"
+  batch_norm_param {
+    use_global_stats: true
+    moving_average_fraction: 0.9
+    eps: 1e-05
+  }
+}
+layer {
+  bottom: "mobilenet0_batchnorm15_fwd"
+  top: "mobilenet0_batchnorm15_fwd"
+  name: "mobilenet0_batchnorm15_fwd_scale"
+  type: "Scale"
+  scale_param { bias_term: true }
+}
+
+layer {
+  bottom: "mobilenet0_batchnorm15_fwd"
+  top: "mobilenet0_relu15_fwd"
+  name: "mobilenet0_relu15_fwd"
+  type: "ReLU"
+}
+
+layer {
+  bottom: "mobilenet0_relu15_fwd"
+  top: "mobilenet0_conv16_fwd"
+  name: "mobilenet0_conv16_fwd"
+  type: "Convolution"
+  convolution_param {
+    num_output: 512
+    kernel_size: 1
+    pad: 0
+    group: 1
+    stride: 1
+    dilation: 1
+    bias_term: false
+  }
+  param {
+    name: "mobilenet0_conv16_weight"
+  }
+}
+
+layer {
+  bottom: "mobilenet0_conv16_fwd"
+  top: "mobilenet0_batchnorm16_fwd"
+  name: "mobilenet0_batchnorm16_fwd"
+  type: "BatchNorm"
+  batch_norm_param {
+    use_global_stats: true
+    moving_average_fraction: 0.9
+    eps: 1e-05
+  }
+}
+layer {
+  bottom: "mobilenet0_batchnorm16_fwd"
+  top: "mobilenet0_batchnorm16_fwd"
+  name: "mobilenet0_batchnorm16_fwd_scale"
+  type: "Scale"
+  scale_param { bias_term: true }
+}
+
+layer {
+  bottom: "mobilenet0_batchnorm16_fwd"
+  top: "mobilenet0_relu16_fwd"
+  name: "mobilenet0_relu16_fwd"
+  type: "ReLU"
+}
+
+layer {
+  bottom: "mobilenet0_relu16_fwd"
+  top: "mobilenet0_conv17_fwd"
+  name: "mobilenet0_conv17_fwd"
+  type: "Convolution"
+  convolution_param {
+    num_output: 512
+    kernel_size: 3
+    pad: 1
+    group: 512
+    stride: 1
+    dilation: 1
+    bias_term: false
+  }
+  param {
+    name: "mobilenet0_conv17_weight"
+  }
+}
+
+layer {
+  bottom: "mobilenet0_conv17_fwd"
+  top: "mobilenet0_batchnorm17_fwd"
+  name: "mobilenet0_batchnorm17_fwd"
+  type: "BatchNorm"
+  batch_norm_param {
+    use_global_stats: true
+    moving_average_fraction: 0.9
+    eps: 1e-05
+  }
+}
+layer {
+  bottom: "mobilenet0_batchnorm17_fwd"
+  top: "mobilenet0_batchnorm17_fwd"
+  name: "mobilenet0_batchnorm17_fwd_scale"
+  type: "Scale"
+  scale_param { bias_term: true }
+}
+
+layer {
+  bottom: "mobilenet0_batchnorm17_fwd"
+  top: "mobilenet0_relu17_fwd"
+  name: "mobilenet0_relu17_fwd"
+  type: "ReLU"
+}
+
+layer {
+  bottom: "mobilenet0_relu17_fwd"
+  top: "mobilenet0_conv18_fwd"
+  name: "mobilenet0_conv18_fwd"
+  type: "Convolution"
+  convolution_param {
+    num_output: 512
+    kernel_size: 1
+    pad: 0
+    group: 1
+    stride: 1
+    dilation: 1
+    bias_term: false
+  }
+  param {
+    name: "mobilenet0_conv18_weight"
+  }
+}
+
+layer {
+  bottom: "mobilenet0_conv18_fwd"
+  top: "mobilenet0_batchnorm18_fwd"
+  name: "mobilenet0_batchnorm18_fwd"
+  type: "BatchNorm"
+  batch_norm_param {
+    use_global_stats: true
+    moving_average_fraction: 0.9
+    eps: 1e-05
+  }
+}
+layer {
+  bottom: "mobilenet0_batchnorm18_fwd"
+  top: "mobilenet0_batchnorm18_fwd"
+  name: "mobilenet0_batchnorm18_fwd_scale"
+  type: "Scale"
+  scale_param { bias_term: true }
+}
+
+layer {
+  bottom: "mobilenet0_batchnorm18_fwd"
+  top: "mobilenet0_relu18_fwd"
+  name: "mobilenet0_relu18_fwd"
+  type: "ReLU"
+}
+
+layer {
+  bottom: "mobilenet0_relu18_fwd"
+  top: "mobilenet0_conv19_fwd"
+  name: "mobilenet0_conv19_fwd"
+  type: "Convolution"
+  convolution_param {
+    num_output: 512
+    kernel_size: 3
+    pad: 1
+    group: 512
+    stride: 1
+    dilation: 1
+    bias_term: false
+  }
+  param {
+    name: "mobilenet0_conv19_weight"
+  }
+}
+
+layer {
+  bottom: "mobilenet0_conv19_fwd"
+  top: "mobilenet0_batchnorm19_fwd"
+  name: "mobilenet0_batchnorm19_fwd"
+  type: "BatchNorm"
+  batch_norm_param {
+    use_global_stats: true
+    moving_average_fraction: 0.9
+    eps: 1e-05
+  }
+}
+layer {
+  bottom: "mobilenet0_batchnorm19_fwd"
+  top: "mobilenet0_batchnorm19_fwd"
+  name: "mobilenet0_batchnorm19_fwd_scale"
+  type: "Scale"
+  scale_param { bias_term: true }
+}
+
+layer {
+  bottom: "mobilenet0_batchnorm19_fwd"
+  top: "mobilenet0_relu19_fwd"
+  name: "mobilenet0_relu19_fwd"
+  type: "ReLU"
+}
+
+layer {
+  bottom: "mobilenet0_relu19_fwd"
+  top: "mobilenet0_conv20_fwd"
+  name: "mobilenet0_conv20_fwd"
+  type: "Convolution"
+  convolution_param {
+    num_output: 512
+    kernel_size: 1
+    pad: 0
+    group: 1
+    stride: 1
+    dilation: 1
+    bias_term: false
+  }
+  param {
+    name: "mobilenet0_conv20_weight"
+  }
+}
+
+layer {
+  bottom: "mobilenet0_conv20_fwd"
+  top: "mobilenet0_batchnorm20_fwd"
+  name: "mobilenet0_batchnorm20_fwd"
+  type: "BatchNorm"
+  batch_norm_param {
+    use_global_stats: true
+    moving_average_fraction: 0.9
+    eps: 1e-05
+  }
+}
+layer {
+  bottom: "mobilenet0_batchnorm20_fwd"
+  top: "mobilenet0_batchnorm20_fwd"
+  name: "mobilenet0_batchnorm20_fwd_scale"
+  type: "Scale"
+  scale_param { bias_term: true }
+}
+
+layer {
+  bottom: "mobilenet0_batchnorm20_fwd"
+  top: "mobilenet0_relu20_fwd"
+  name: "mobilenet0_relu20_fwd"
+  type: "ReLU"
+}
+
+layer {
+  bottom: "mobilenet0_relu20_fwd"
+  top: "mobilenet0_conv21_fwd"
+  name: "mobilenet0_conv21_fwd"
+  type: "Convolution"
+  convolution_param {
+    num_output: 512
+    kernel_size: 3
+    pad: 1
+    group: 512
+    stride: 1
+    dilation: 1
+    bias_term: false
+  }
+  param {
+    name: "mobilenet0_conv21_weight"
+  }
+}
+
+layer {
+  bottom: "mobilenet0_conv21_fwd"
+  top: "mobilenet0_batchnorm21_fwd"
+  name: "mobilenet0_batchnorm21_fwd"
+  type: "BatchNorm"
+  batch_norm_param {
+    use_global_stats: true
+    moving_average_fraction: 0.9
+    eps: 1e-05
+  }
+}
+layer {
+  bottom: "mobilenet0_batchnorm21_fwd"
+  top: "mobilenet0_batchnorm21_fwd"
+  name: "mobilenet0_batchnorm21_fwd_scale"
+  type: "Scale"
+  scale_param { bias_term: true }
+}
+
+layer {
+  bottom: "mobilenet0_batchnorm21_fwd"
+  top: "mobilenet0_relu21_fwd"
+  name: "mobilenet0_relu21_fwd"
+  type: "ReLU"
+}
+
+layer {
+  bottom: "mobilenet0_relu21_fwd"
+  top: "mobilenet0_conv22_fwd"
+  name: "mobilenet0_conv22_fwd"
+  type: "Convolution"
+  convolution_param {
+    num_output: 512
+    kernel_size: 1
+    pad: 0
+    group: 1
+    stride: 1
+    dilation: 1
+    bias_term: false
+  }
+  param {
+    name: "mobilenet0_conv22_weight"
+  }
+}
+
+layer {
+  bottom: "mobilenet0_conv22_fwd"
+  top: "mobilenet0_batchnorm22_fwd"
+  name: "mobilenet0_batchnorm22_fwd"
+  type: "BatchNorm"
+  batch_norm_param {
+    use_global_stats: true
+    moving_average_fraction: 0.9
+    eps: 1e-05
+  }
+}
+layer {
+  bottom: "mobilenet0_batchnorm22_fwd"
+  top: "mobilenet0_batchnorm22_fwd"
+  name: "mobilenet0_batchnorm22_fwd_scale"
+  type: "Scale"
+  scale_param { bias_term: true }
+}
+
+layer {
+  bottom: "mobilenet0_batchnorm22_fwd"
+  top: "mobilenet0_relu22_fwd"
+  name: "mobilenet0_relu22_fwd"
+  type: "ReLU"
+}
+
+layer {
+  bottom: "mobilenet0_relu22_fwd"
+  top: "mobilenet0_conv23_fwd"
+  name: "mobilenet0_conv23_fwd"
+  type: "Convolution"
+  convolution_param {
+    num_output: 512
+    kernel_size: 3
+    pad: 1
+    group: 512
+    stride: 2
+    dilation: 1
+    bias_term: false
+  }
+  param {
+    name: "mobilenet0_conv23_weight"
+  }
+}
+
+layer {
+  bottom: "mobilenet0_conv23_fwd"
+  top: "mobilenet0_batchnorm23_fwd"
+  name: "mobilenet0_batchnorm23_fwd"
+  type: "BatchNorm"
+  batch_norm_param {
+    use_global_stats: true
+    moving_average_fraction: 0.9
+    eps: 1e-05
+  }
+}
+layer {
+  bottom: "mobilenet0_batchnorm23_fwd"
+  top: "mobilenet0_batchnorm23_fwd"
+  name: "mobilenet0_batchnorm23_fwd_scale"
+  type: "Scale"
+  scale_param { bias_term: true }
+}
+
+layer {
+  bottom: "mobilenet0_batchnorm23_fwd"
+  top: "mobilenet0_relu23_fwd"
+  name: "mobilenet0_relu23_fwd"
+  type: "ReLU"
+}
+
+layer {
+  bottom: "mobilenet0_relu23_fwd"
+  top: "mobilenet0_conv24_fwd"
+  name: "mobilenet0_conv24_fwd"
+  type: "Convolution"
+  convolution_param {
+    num_output: 1024
+    kernel_size: 1
+    pad: 0
+    group: 1
+    stride: 1
+    dilation: 1
+    bias_term: false
+  }
+  param {
+    name: "mobilenet0_conv24_weight"
+  }
+}
+
+layer {
+  bottom: "mobilenet0_conv24_fwd"
+  top: "mobilenet0_batchnorm24_fwd"
+  name: "mobilenet0_batchnorm24_fwd"
+  type: "BatchNorm"
+  batch_norm_param {
+    use_global_stats: true
+    moving_average_fraction: 0.9
+    eps: 1e-05
+  }
+}
+layer {
+  bottom: "mobilenet0_batchnorm24_fwd"
+  top: "mobilenet0_batchnorm24_fwd"
+  name: "mobilenet0_batchnorm24_fwd_scale"
+  type: "Scale"
+  scale_param { bias_term: true }
+}
+
+layer {
+  bottom: "mobilenet0_batchnorm24_fwd"
+  top: "mobilenet0_relu24_fwd"
+  name: "mobilenet0_relu24_fwd"
+  type: "ReLU"
+}
+
+layer {
+  bottom: "mobilenet0_relu24_fwd"
+  top: "mobilenet0_conv25_fwd"
+  name: "mobilenet0_conv25_fwd"
+  type: "Convolution"
+  convolution_param {
+    num_output: 1024
+    kernel_size: 3
+    pad: 1
+    group: 1024
+    stride: 1
+    dilation: 1
+    bias_term: false
+  }
+  param {
+    name: "mobilenet0_conv25_weight"
+  }
+}
+
+layer {
+  bottom: "mobilenet0_conv25_fwd"
+  top: "mobilenet0_batchnorm25_fwd"
+  name: "mobilenet0_batchnorm25_fwd"
+  type: "BatchNorm"
+  batch_norm_param {
+    use_global_stats: true
+    moving_average_fraction: 0.9
+    eps: 1e-05
+  }
+}
+layer {
+  bottom: "mobilenet0_batchnorm25_fwd"
+  top: "mobilenet0_batchnorm25_fwd"
+  name: "mobilenet0_batchnorm25_fwd_scale"
+  type: "Scale"
+  scale_param { bias_term: true }
+}
+
+layer {
+  bottom: "mobilenet0_batchnorm25_fwd"
+  top: "mobilenet0_relu25_fwd"
+  name: "mobilenet0_relu25_fwd"
+  type: "ReLU"
+}
+
+layer {
+  bottom: "mobilenet0_relu25_fwd"
+  top: "mobilenet0_conv26_fwd"
+  name: "mobilenet0_conv26_fwd"
+  type: "Convolution"
+  convolution_param {
+    num_output: 1024
+    kernel_size: 1
+    pad: 0
+    group: 1
+    stride: 1
+    dilation: 1
+    bias_term: false
+  }
+  param {
+    name: "mobilenet0_conv26_weight"
+  }
+}
+
+layer {
+  bottom: "mobilenet0_conv26_fwd"
+  top: "mobilenet0_batchnorm26_fwd"
+  name: "mobilenet0_batchnorm26_fwd"
+  type: "BatchNorm"
+  batch_norm_param {
+    use_global_stats: true
+    moving_average_fraction: 0.9
+    eps: 1e-05
+  }
+}
+layer {
+  bottom: "mobilenet0_batchnorm26_fwd"
+  top: "mobilenet0_batchnorm26_fwd"
+  name: "mobilenet0_batchnorm26_fwd_scale"
+  type: "Scale"
+  scale_param { bias_term: true }
+}
+
+layer {
+  bottom: "mobilenet0_batchnorm26_fwd"
+  top: "mobilenet0_relu26_fwd"
+  name: "mobilenet0_relu26_fwd"
+  type: "ReLU"
+}
+
+layer {
+  bottom: "mobilenet0_relu26_fwd"
+  top: "mobilenet0_pool0_fwd"
+  name: "mobilenet0_pool0_fwd"
+  type: "Pooling"
+  pooling_param {
+    pool: AVE
+    global_pooling: true
+  }
+}
+
+layer {
+  bottom: "mobilenet0_pool0_fwd"
+  top: "dense0_fwd"
+  name: "dense0_fwd"
+  type: "InnerProduct"
+  inner_product_param {
+    num_output: 4253
+  }
+}
+
+layer {
+  bottom: "dense0_fwd"
+  top: "pred"
+  name: "pred"
+  type: "Softmax"
+}
+
